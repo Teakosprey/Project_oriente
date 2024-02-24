@@ -1,9 +1,10 @@
 # Project oriente - Asistente personal
 
-**Project oriente** Es un asistente personal que funciona mediante comandos de voz. 
+**Project oriente** 
+Es un asistente personal que funciona mediante comandos de voz  
 Su funcionamiento está destinado tanto para alumnos como para docentes. 
-Funcionalidades básicas como reproductor de videos, mensajería, etc.
-Consultas académicas a solo una petición.
+Funcionalidades básicas como reproductor de videos, mensajería, etc.  
+Consultas académicas a solo una petición. 
 **Agilizando el aprendizaje.**
 
 [![Download latest version here](https://img.shields.io/badge/-Download%20latest%20version%20here-brightgreen?longCache=true&style=for-the-badge)](../../releases/latest)
