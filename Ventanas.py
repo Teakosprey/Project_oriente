@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import ttk
 from tkinter.filedialog import *
 from Alexa import *
-from Conexion import *
+
     
 
 #Mover y cerrar ventanas==================================================================================================================
@@ -32,7 +32,7 @@ def Login():
     ventana.title("Inicio de sesion") #Titulo de la ventana
     ventana.geometry("500x500")
     try:
-        fondo = PhotoImage(file="C:/Users/vmhl0/Escritorio/Proyecto/Imagenes/Login.png")
+        fondo = PhotoImage(file="Imagenes/Login.png")
     except Exception as e:
         print(f"Error al cargar la imagen: {e}")
         fondo = None  # Evita problemas si la carga de la imagen falla
@@ -86,7 +86,7 @@ def ventana_Asistente():
     ventana2.geometry("500x500")
 
     try:
-        fondo = PhotoImage(file="C:/Users/vmhl0/Escritorio/Proyecto/Imagenes/Bienvenido.png")
+        fondo = PhotoImage(file="Imagenes/Bienvenido.png")
     except Exception as ex:
         fondo = None
 

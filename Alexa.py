@@ -2,7 +2,6 @@ import speech_recognition as sr
 import pyttsx3 
 from tkinter import *
 from tkinter.filedialog import *
-from prueba import *
 import os
 import pywhatkit as py
 import datetime
@@ -84,7 +83,7 @@ def funcionalidades_A():
         minutos = int(datetime.datetime.now().minute+1)
         py.sendwhatmsg(phone_no=numero, message="Hola mundo", time_hour=hora, time_min=minutos)
     elif 'calificaciones' in respuesta:
-
+        print()
     else:
         talk("Lo sineto no puedo realizar esa consulta aun")
 
