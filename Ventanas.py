@@ -82,7 +82,7 @@ def ventana_Asistente():
 
     global ventana2
     ventana2 = Tk()
-    ventana2.title("Asistente Virtual")
+    ventana2.title("Asistente Personal")
     ventana2.geometry("500x500")
 
     try:
@@ -95,7 +95,7 @@ def ventana_Asistente():
         fondo_label.place(x=0, y=0, relwidth=1, relheight=1)
 
     boton_virtual = Button(ventana2, height=2, width=20, bg="Blue", text="ESCUCHAR", font=("Times New Roman", 15, "bold"), foreground= "White", command=funcionalidades_A)
-    boton_virtual.place(x=133, y=375)
+    boton_virtual.place(x=95, y=375)
 
     boton_regresar = Button(ventana2, height=1, width=5, text="Volver", font=("Comic Sans MS", 12, "bold"), bg="White", command=volver)
     boton_regresar.place(x=10, y=10)    
