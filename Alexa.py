@@ -5,7 +5,7 @@ from tkinter.filedialog import *
 import os
 import pywhatkit as py
 import datetime
-import urllib
+import webbrowser
 
 def abrir_ventana_archivos():
     root = Tk()
@@ -83,7 +83,9 @@ def funcionalidades_A():
         minutos = int(datetime.datetime.now().minute+1)
         py.sendwhatmsg(phone_no=numero, message="Hola mundo", time_hour=hora, time_min=minutos)
     elif 'calificaciones' in respuesta:
-        print()
+
+        #Ingresar link para acceso directo de las calificaciones
+        webbrowser.open("https://sunischolar-uopzr.integralware.mx/axboletaparcial_uo.aspx?Ci1aO9jKFFfrEhNvKfuBGzoH0AzLsAEzh7l3gPB+frxobiy4nhQkRTNC3c6R4BuAcROy+SvnlXBtCS+TFQ8aKA==")
     else:
         talk("Lo sineto no puedo realizar esa consulta aun")
 
