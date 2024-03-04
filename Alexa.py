@@ -89,8 +89,8 @@ def funcionalidades_A():
         talk("Ingresando a las calificaciones")
         webbrowser.open("https://sunischolar-uopzr.integralware.mx/axboletaparcial_uo.aspx?+LInxfNq+2kOF463XdigCz69jRGU0n0K7Xei9qWS++6Gu7iw8Kyy8W7Z5IavdZtuvx4yfqkdEilRqhmJd/4KsQ==")
 
-    elif "graficacion" in respuesta:
-        talk("Ingresando a las calificaciones")
+    elif "octave" in respuesta:
+        talk("Ingresando a Octave")
         subprocess.Popen("C:\Program Files\GNU Octave\Octave-8.4.0\octave-launch.exe")
 
     elif "plataforma" in respuesta:
