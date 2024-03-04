@@ -34,7 +34,6 @@ def talk(text):
     enginee.say(text)
     enginee.runAndWait()
 
- 
 def listen():
     rec = ""
     try:
