@@ -35,8 +35,8 @@ def Login():
         fondo = PhotoImage(file="Imagenes/Login.png")
     except Exception as e:
         print(f"Error al cargar la imagen: {e}")
-        fondo = None  # Evita problemas si la carga de la imagen falla
-    # Mostrar la imagen de fondo si se pudo cargar
+        fondo = None  
+
     if fondo:
         fondo_label = Label(ventana, image=fondo)
         fondo_label.place(x=0, y=0, relwidth=1, relheight=1)
@@ -60,10 +60,10 @@ def Login():
     global boton
 
     boton = Button(ventana, text="SignUp", cursor="hand2", bg = "White", width = 12, relief = "flat", 
-                      font = ("Comic Sans MS", 12, "bold"), command=cambiar_asistente)
+                font = ("Comic Sans MS", 12, "bold"), command=cambiar_asistente)
     boton.place(x=300, y=405)
     boton2 = Button(ventana, text="Exit", cursor="hand2", bg = "White", width = 12, relief = "flat", 
-                      font = ("Comic Sans MS", 12, "bold"), command=salir)
+                font = ("Comic Sans MS", 12, "bold"), command=salir)
     boton2.place(x=40, y=405)
 
     #ComboBox
