@@ -42,7 +42,7 @@ class VentanaLogin:
         #Botones
 
         self.boton_inicio_sesion = Button(self.root, text="SignUp", cursor="hand2", bg = "White", width = 12, relief = "flat", 
-                      font = ("Comic Sans MS", 12, "bold"), command=self.verificar_credenciales)
+                        font = ("Comic Sans MS", 12, "bold"), command=self.verificar_credenciales)
         self.boton_inicio_sesion.place(x=300, y=405)
         boton2 = Button(self.root, text="Exit", cursor="hand2", bg = "White", width = 12, relief = "flat", 
                         font = ("Comic Sans MS", 12, "bold"), command=self.salir)
