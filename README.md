@@ -22,17 +22,18 @@ Para comenzar se necesita un entorno de programación de python.
 Instalar líbrerias. 
 _Módulos necesarios para la ejecución del código._ 
 
-'''
-pip install SpeechRecognition
-'''
+```
+pip install SpeechRecognition.
+```
 
-'''
+```
 pip install pyttsx3
-'''
+```
 
-'''
-pip install pywhatkit
-'''
+```
+pip install pywhatkit.
+```
+
 ## Construido con 🛠️
 
 * [Python](https://www.python.org/) - Lenguaje de programación.  
