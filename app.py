@@ -22,4 +22,3 @@ class Aplicacion:
 if __name__ == "__main__":
     app = Aplicacion(funcionalidades_A)
     app.raiz.mainloop()
-

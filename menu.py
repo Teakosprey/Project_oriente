@@ -20,6 +20,7 @@ class VentanaMenu:
             self.fondo_imagen.place(x=0, y=0, relwidth=1, relheight=1)
 
         #Botones
+
         self.boton_virtual = Button(self.root, height=2, width=20, bg="Blue", text="ESCUCHAR", font=("Times New Roman", 15, "bold"), foreground= "White", command=self.funcionalidades_A)
         self.boton_virtual.place(x=95, y=375)
 
