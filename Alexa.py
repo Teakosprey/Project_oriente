@@ -7,6 +7,14 @@ import pywhatkit as py
 import datetime
 import webbrowser
 import subprocess
+from gmail import enviar_correo
+from pymongo import MongoClient
+
+#Conexión a mongodb
+cadena_conexion = "mongodb+srv://Israel:GAPI.agentkennedy33I9@cluster0.vvbkumg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+cliente = MongoClient(cadena_conexion)
+db = cliente["usuarios"]
+collection = db["numeros"]
 
 def abrir_ventana_archivos():
     root = Tk()
@@ -56,7 +64,7 @@ def listen():
 
 #funciones de alumno, como:acceder a materias, calificaciones, etc.
 def funcionalidades_A():
-
+    talk("Alumno")
     respuesta = listen()
 
     if "eliminar" in respuesta:
@@ -76,12 +84,34 @@ def funcionalidades_A():
         else:
             talk("No se ha seleccionado ningun archivo")
 
-    elif "mensaje" in respuesta:
-        
-        numero = str(input("Ingresa el numero: "))
-        hora = int(datetime.datetime.now().hour)
-        minutos = int(datetime.datetime.now().minute+1)
-        py.sendwhatmsg(phone_no=numero, message="Hola mundo", time_hour=hora, time_min=minutos)
+    elif "mensaje" in respuesta: 
+        # Pregunta al usuario a quién quiere enviar el mensaje
+        talk('¿A quién le quieres enviar el mensaje?')
+        nombre_usuario = listen()
+
+        # Buscar usuario en MongoDB
+        user_data = collection.find_one({nombre_usuario: {"$exists": True}})
+        print(nombre_usuario)
+        print(user_data)
+
+        if user_data:
+            numero = user_data[nombre_usuario]
+            without_space = numero.replace(' ', '')
+            print(without_space)
+
+            talk('Deja tu recado:')
+            massage = listen()
+            print(massage)
+
+            current_time = datetime.datetime.now()
+            hour = current_time.hour
+            minute = current_time.minute + 1
+
+            py.sendwhatmsg('+52'+without_space, str(massage), hour, minute)
+
+            talk('en un momento le enviare el mensaje')
+        else:
+            talk('No se encontró el número de teléfono para el usuario.')
 
     elif "calificaciones" in respuesta:
         #Ingresar link para acceso directo de las calificaciones
@@ -115,3 +145,26 @@ def funcionalidades_A():
     else:
         talk("Lo siento no puedo realizar esa consulta aun")
 
+def funcionalidades_B():
+    talk("Docente")
+    respuesta = listen()
+
+    if "descargar" in respuesta:
+        talk("Ingresando a drive")
+        # El comando que quieres ejecutar es python seguido del nombre de tu archivo
+        comando = ["python", "descargarArchivosDrive.py"]
+
+        # Usamos subprocess para ejecutar el comando
+        subprocess.run(comando)
+        talk("archivo descargado")
+
+    elif "correo" in respuesta:
+        talk("Por favor, di el asunto del correo electrónico:")
+        asunto = listen()
+        talk("Por favor, di el mensaje del correo electrónico:")
+        mensaje = listen()
+        enviar_correo(asunto,mensaje)
+
+        talk("correo enviado")
+    else:
+        talk("Lo siento no puedo realizar esa consulta aun")
