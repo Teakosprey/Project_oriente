@@ -7,6 +7,69 @@ import pywhatkit as py
 import datetime
 import webbrowser
 import subprocess
+from selenium import webdriver
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support.ui import Select
+import time
+from selenium import webdriver
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support.ui import Select
+from login import *
+import time
+from Conexion import *
+
+
+def sunischolar(eleccion):
+
+    matricula = "92200235"
+    contraseña = "A0TXTURDW8"
+    Perfil = "Alumno"
+
+    driver = webdriver.Chrome()
+    url = "https://sunischolar-uopzr.integralware.mx/login.aspx?"
+    driver.get(url)
+
+    # Iniciar sesión
+    username = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "vUSUARIOCODIGO")))
+    username.clear()
+    username.send_keys(matricula)
+
+    password = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "vUSUARIOPSW")))
+    password.clear()
+    password.send_keys(contraseña)
+
+    perfil = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "vPERFIL")))
+    combobox = Select(perfil)
+    combobox.select_by_visible_text(Perfil)
+
+
+    cargar = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "BTNLOGIN")))
+
+    # Hacer clic en el botón de iniciar sesión
+    cargar.click()
+
+    # Esperar a que la página se cargue completamente (puedes ajustar el tiempo según sea necesario)
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "GXState")))
+
+    if eleccion == 1:
+        link = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//a[contains(text(), 'Boleta Parcial')]")))
+    elif eleccion == 2:
+        link = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//a[contains(text(), 'Horario')]")))
+    
+    driver.execute_script(link.get_attribute("onclick"))
+
+    # Puedes agregar más acciones después de hacer clic en el enlace según tus necesidades
+
+    # Esperar antes de cerrar el navegador (puedes ajustar el tiempo según sea necesario)
+    time.sleep(1000)
+
+    # Cerrar el navegador
+    driver.quit()
+
 
 def abrir_ventana_archivos():
     root = Tk()
@@ -78,7 +141,7 @@ def funcionalidades_A():
             talk("No se ha seleccionado ningun archivo")
 
     elif "mensaje" in respuesta:
-        
+
         numero = str(input("Ingresa el numero: "))
         hora = int(datetime.datetime.now().hour)
         minutos = int(datetime.datetime.now().minute+1)
@@ -87,7 +150,7 @@ def funcionalidades_A():
     elif "calificaciones" in respuesta:
         #Ingresar link para acceso directo de las calificaciones
         talk("Ingresando a las calificaciones")
-        webbrowser.open("https://sunischolar-uopzr.integralware.mx/axboletaparcial_uo.aspx?+LInxfNq+2kOF463XdigCz69jRGU0n0K7Xei9qWS++6Gu7iw8Kyy8W7Z5IavdZtuvx4yfqkdEilRqhmJd/4KsQ==")
+        sunischolar(1)
 
     elif "octave" in respuesta:
         talk("Ingresando a Octave")
@@ -99,7 +162,7 @@ def funcionalidades_A():
 
     elif "horario" in respuesta:
         talk("Ingresando al horario")
-        webbrowser.open("https://sunischolar-uopzr.integralware.mx/axhorarioalumno_std.aspx?g1DF4+wVbLAmXloUz/2KwtWAUFgPDk5ZQ+CyGAcum3Dbrv2ISjUSH5h1xoQ11QRL")
+        sunischolar(2)
 
     elif "reproduce" in respuesta:
         musica = respuesta.replace("reproduce", "")

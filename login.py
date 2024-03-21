@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import ttk
+from Conexion import *
 
 class VentanaLogin:
     def __init__(self, root, mostrar_ventana_menu):
@@ -8,7 +9,7 @@ class VentanaLogin:
         self.root.geometry("500x500")
         self.mostrar_ventana_menu = mostrar_ventana_menu
 
-        self.opciones = ["Alumnos", "Docentes"]
+        self.opciones = ["Alumno", "Docente"]
 
         # Cargar la imagen de fondo
         try:
@@ -48,15 +49,38 @@ class VentanaLogin:
                         font = ("Comic Sans MS", 12, "bold"), command=self.salir)
         boton2.place(x=40, y=405)
 
+    def getMatricula(self):
+        return self.texto_Matricula.get()
+    
+    def getContraseña(self):
+        return self.texto_Password.get()
+
+    def getPerfil(self):
+        return self.comboBox.get()
+    
     def verificar_credenciales(self):
-        # Lógica para verificar las credenciales ingresadas
-        # Si son correctas, llamar al método para mostrar la ventana del menú principal
-        self.mostrar_ventana_menu()
+
+        matricula = self.getMatricula()
+        contraseña = self.getContraseña()
+        perfil = self.getPerfil()
+
+        credenciales_correctas = sesion(matricula, contraseña, perfil)  
+
+        if credenciales_correctas == "concedido":
+            self.mostrar_ventana_menu()
+        else:
+            pass
+
     
     def salir(self):
         self.root.destroy()
 
+
+
+
 if __name__ == "__main__":
     root = Tk()
+    global app
     app = VentanaLogin(root, None)
     root.mainloop()
+
